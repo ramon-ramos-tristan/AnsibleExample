@@ -1,8 +1,15 @@
-- name: Run commands with shell
+- name: Update and Upgrade
   hosts: all
   become: true
   tasks:
-    - name: Get update
-      shell: 'apt update' 
-    - name: Get upgrade
-      shell: 'apt upgrade' 
+    #This one will use APT to update and upgrade the system
+    - name: Update and Upgrade with APT
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 3600
+    #This one will do the same using commands with Shell
+    - name: Get update with Shell
+      shell: 'apt update'
+    - name: Get upgrade with Shell
+      shell: 'apt upgrade'
